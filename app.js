@@ -34,10 +34,11 @@ server.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 })
 
-app.use('/', (req, res) => {
+app.get('/', (req, res) => {
     res.send('API is running...');
 })
 
 const userController = require('./routes/userRoutes.js');
+const teamController = require('./routes/teamRoutes.js');
 
 app.use('/user', userController);

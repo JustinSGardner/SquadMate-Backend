@@ -26,6 +26,10 @@ const userSchema = mongoose.Schema(
         isAdmin : {
             type: Boolean,
             default: false
+        },
+        team : {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Team'
         }
     }
 );
