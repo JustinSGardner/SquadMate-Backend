@@ -30,7 +30,67 @@ const userSchema = mongoose.Schema(
         team : {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Team'
-        }
+        },
+        parentForm : {
+            rider: {
+                firstName: String,
+                lastName: String
+            },
+            parentOne: {
+                firstName: String,
+                lastName: String,
+                phone: {
+                    home: String,
+                    cell: String
+                }
+            },
+            parentTwo: {
+                firstName: String,
+                lastName: String,
+                phone: {
+                    home: String,
+                    cell: String
+                }
+            },
+            emergencyContactOne: {
+                firstName: String,
+                lastName: String,
+                phone: {
+                    home: String,
+                    cell: String
+                }
+            },
+            emergencyContactTwo: {
+                firstName: String,
+                lastName: String,
+                phone: {
+                    home: String,
+                    cell: String,
+                }
+            }
+        },
+        insurance: {
+            provider: String,
+            group: String,
+            number: String
+        },
+        medicalConditions: {
+            type: Boolean,
+            default: false
+        },
+        asthma: {
+            type: Boolean,
+            default: false
+        },
+        medicationRequired: {
+            type: Boolean,
+            default: false
+        },
+        ibprofenRelease: {
+            type: Boolean,
+            default: false
+        },
+        allergies: String
     }
 );
 
