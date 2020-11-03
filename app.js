@@ -6,9 +6,27 @@ const PORT = process.env.PORT || 3333;
 const express = require('express');
 const dotenv = require('dotenv');
 dotenv.config();
+const jwt = require('express-jwt');
+const jwtAuthz = require('express-jwt-authz');
+const jwksRsa = require('jwks-rsa');
 
 const connectDB = require('./config/db.js');
 connectDB();
+
+const checkJwt = jwt({
+  secret: jwksRsa.expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 5,
+    jwksUri: `https://squadmate.us.auth0.com/.well-known/jwks.json`
+  }),
+
+  // Validate the audience and the issuer.
+  audience: 'https://squadmate/api',
+  issuer: `https://squadmate.us.auth0.com/`,
+  algorithms: ['RS256']
+});
+
 
 const cors = require('cors');
 const corsOptions = {
@@ -41,4 +59,15 @@ app.get('/', (req, res) => {
 const userController = require('./routes/userRoutes.js');
 const teamController = require('./routes/teamRoutes.js');
 
-app.use('/user', userController);
+//app.use('/user', userController);
+app.get('/api/public', (req, res) => {
+    res.json({
+        message: 'Hello from a public endpoint! You don\'t need to be authenticated to see this.'
+      });
+})
+
+app.get('/api/private', checkJwt, function(req, res) {
+    res.json({
+      message: 'Hello from a private endpoint! You need to be authenticated to see this.'
+    });
+  });
