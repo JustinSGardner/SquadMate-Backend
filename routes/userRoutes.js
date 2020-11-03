@@ -5,7 +5,7 @@ const User = require('../models/userModel');
 
 // Get All Users
 router.get('/', async (req, res) => {
-    console.log("test");
+    console.log('test');
     const users = await User.find({});
     res.json(users);
 });
@@ -27,6 +27,6 @@ router.delete(':/id', async (req, res) => {
     const user = await User.findById(req.params.id);
     user.remove();
     res.json(user);
-})
+});
 
 module.exports = router;
