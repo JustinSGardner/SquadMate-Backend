@@ -25,20 +25,23 @@ const app = express();
 const server = http.createServer(app);
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: false
-}));
+app.use(
+    bodyParser.urlencoded({
+        extended: false,
+    })
+);
 app.use(cors(corsOptions));
 
 server.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
-})
+});
 
 app.get('/', (req, res) => {
     res.send('API is running...');
-})
+});
 
 const userController = require('./routes/userRoutes.js');
 const teamController = require('./routes/teamRoutes.js');
 
 app.use('/user', userController);
+app.use('/team', teamController);

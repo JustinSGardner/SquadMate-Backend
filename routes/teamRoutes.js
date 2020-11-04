@@ -2,32 +2,37 @@ const express = require('express');
 const router = express.Router();
 
 const Team = require('../models/teamModel');
+const User = require('../models/userModel');
 
 // Get All Teams
 router.get('/', async (req, res) => {
-  console.log("test");
-  const team = await Team.find({});
-  res.json(team);
+    const team = await Team.find({});
+    res.json(team);
 });
 
-// Get User by ID
+// Get Team by ID
 router.get('/:id', async (req, res) => {
-  const team = await Team.findById(req.params.id);
-  res.json(team);
+    const team = await Team.findById(req.params.id);
+    res.json(team);
 });
 
-// Create User
+// Get Users by Team ID
+router.get('/:id/users', async (req, res) => {
+    const usersByTeam = await User.find({ team: req.params.id });
+    res.json(usersByTeam);
+});
+
+// Create Team
 router.post('/', async (req, res) => {
-  console.log(req.body);
-  const team = await Team.create(req.body);
-  res.json(team);
+    const team = await Team.create(req.body);
+    res.json(team);
 });
 
 // Delete Team by ID
-router.delete(':/id', async (req, res) => {
-  const team = await Team.findById(req.params.id);
-  team.remove();
-  res.json(team);
-})
+router.delete('/:id', async (req, res) => {
+    const team = await Team.findById(req.params.id);
+    team.remove();
+    res.json(team);
+});
 
 module.exports = router;
