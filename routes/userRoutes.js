@@ -18,9 +18,20 @@ router.get('/:id', async (req, res) => {
 
 // Create User
 router.post('/', async (req, res) => {
-    console.log(req.body);
     const user = await User.create(req.body);
     res.json(user);
+});
+
+// UserLogin
+router.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+    console.log(email);
+    if (user && (await user.comparePassword(password))) {
+        const userProfile = await User.findById(user.id).select('-password');
+    console.log(userProfile);
+        res.json(userProfile);
+    }   
 });
 
 // Delete User by ID
