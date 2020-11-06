@@ -20,6 +20,10 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    phone: {
+        home: String,
+        cell: String,
+    },
     isAdmin: {
         type: Boolean,
         default: false,
