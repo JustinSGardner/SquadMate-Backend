@@ -16,13 +16,23 @@ const userSchema = mongoose.Schema({
         required: true,
         unique: true,
     },
+    avatarUrl: {
+        type: String,
+        default: '',
+    },
     password: {
         type: String,
         required: true,
     },
     phone: {
-        home: String,
-        cell: String,
+        home: {
+            type: String,
+            default: '',
+        },
+        cell: {
+            type: String,
+            default: '',
+        },
     },
     isAdmin: {
         type: Boolean,
@@ -31,49 +41,101 @@ const userSchema = mongoose.Schema({
     team: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Team',
+        default: '5fa2dd0998fe8fbfdf5eaac2',
     },
     parentForm: {
         rider: {
-            firstName: String,
-            lastName: String,
+            firstName: {
+                type: String,
+                default: '',
+            },
+            lastName: {
+                type: String,
+                default: '',
+            },
         },
         parentOne: {
-            firstName: String,
-            lastName: String,
+            firstName: {
+                type: String,
+                default: '',
+            },
+            lastName: {
+                type: String,
+                default: '',
+            },
             phone: {
-                home: String,
-                cell: String,
+                home: {
+                    type: String,
+                    default: '',
+                },
+                cell: {
+                    type: String,
+                    default: '',
+                },
             },
         },
         parentTwo: {
-            firstName: String,
-            lastName: String,
+            firstName: { type: String, default: '' },
+            lastName: { type: String, default: '' },
             phone: {
-                home: String,
-                cell: String,
+                home: { type: String, default: '' },
+                cell: { type: String, default: '' },
             },
         },
         emergencyContactOne: {
-            firstName: String,
-            lastName: String,
+            firstName: {
+                type: String,
+                default: '',
+            },
+            lastName: {
+                type: String,
+                default: '',
+            },
             phone: {
-                home: String,
-                cell: String,
+                home: {
+                    type: String,
+                    default: '',
+                },
+                cell: {
+                    type: String,
+                    default: '',
+                },
             },
         },
         emergencyContactTwo: {
-            firstName: String,
-            lastName: String,
+            firstName: {
+                type: String,
+                default: '',
+            },
+            lastName: {
+                type: String,
+                default: '',
+            },
             phone: {
-                home: String,
-                cell: String,
+                home: {
+                    type: String,
+                    default: '',
+                },
+                cell: {
+                    type: String,
+                    default: '',
+                },
             },
         },
     },
     insurance: {
-        provider: String,
-        group: String,
-        number: String,
+        provider: {
+            type: String,
+            default: '',
+        },
+        group: {
+            type: String,
+            default: '',
+        },
+        number: {
+            type: String,
+            default: '',
+        },
     },
     medicalConditions: {
         type: Boolean,
@@ -91,7 +153,10 @@ const userSchema = mongoose.Schema({
         type: Boolean,
         default: false,
     },
-    allergies: String,
+    allergies: {
+        type: String,
+        default: '',
+    },
 });
 
 userSchema.pre('save', function (next) {
