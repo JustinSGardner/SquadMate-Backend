@@ -11,6 +11,11 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    github: {
+        type: String,
+        default: '',
+        unique: true,
+    },
     email: {
         type: String,
         required: true,
