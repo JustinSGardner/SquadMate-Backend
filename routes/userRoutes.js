@@ -29,9 +29,19 @@ router.post('/login', async (req, res) => {
     console.log(email);
     if (user && (await user.comparePassword(password))) {
         const userProfile = await User.findById(user.id).select('-password');
-    console.log(userProfile);
+        console.log(userProfile);
         res.json(userProfile);
-    }   
+    }
+});
+
+// Update User
+router.put('/update/:id', async (req, res) => {
+    console.log('ID', req.params.id), console.log('Body', req.body);
+    const user = await User.findOneAndUpdate({ _id: req.params.id }, req.body, {
+        new: true,
+        runValidators: true,
+    });
+    res.json(user);
 });
 
 // Delete User by ID
