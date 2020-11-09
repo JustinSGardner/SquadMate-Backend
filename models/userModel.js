@@ -11,6 +11,11 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    github: {
+        type: String,
+        default: '',
+        unique: true,
+    },
     email: {
         type: String,
         required: true,
@@ -82,6 +87,7 @@ const userSchema = mongoose.Schema({
                 cell: { type: String, default: '' },
             },
         },
+
         emergencyContactOne: {
             firstName: {
                 type: String,
@@ -137,6 +143,10 @@ const userSchema = mongoose.Schema({
             default: '',
         },
     },
+    emergencyFormDone: {
+        type: Boolean,
+        default: false,
+    },
     medicalConditions: {
         type: Boolean,
         default: false,
@@ -149,7 +159,7 @@ const userSchema = mongoose.Schema({
         type: Boolean,
         default: false,
     },
-    ibprofenRelease: {
+    ibuprofenRelease: {
         type: Boolean,
         default: false,
     },
