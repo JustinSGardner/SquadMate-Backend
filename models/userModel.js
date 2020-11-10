@@ -11,11 +11,6 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    github: {
-        type: String,
-        default: '',
-        unique: true,
-    },
     email: {
         type: String,
         required: true,
@@ -57,6 +52,25 @@ const userSchema = mongoose.Schema({
             lastName: {
                 type: String,
                 default: '',
+            },
+            github: {
+                type: String,
+                default: '',
+                unique: true,
+            },
+            email: {
+                type: String,
+                default: '',
+            },
+            phone: {
+                home: {
+                    type: String,
+                    default: '',
+                },
+                cell: {
+                    type: String,
+                    default: '',
+                },
             },
         },
         parentOne: {
