@@ -42,6 +42,8 @@ app.get('/', (req, res) => {
 
 const userController = require('./routes/userRoutes.js');
 const teamController = require('./routes/teamRoutes.js');
+const documentController = require('./routes/documentRoutes.js');
 
 app.use('/user', userController);
 app.use('/team', teamController);
+app.use('/document', documentController);
