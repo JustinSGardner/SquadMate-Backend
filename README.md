@@ -6,9 +6,10 @@
 
 <div align="center">
 
-[React](https://reactjs.org/) components for faster and simpler web development. Build your own design system, or start with [Material Design](https://material.io/design/introduction/).
+[React](https://reactjs.org/) components for faster and simpler web development. 
+Build your own design system, or start with [Material Design](https://material.io/design/introduction/).
 
-[Crowdin](https://img.shields.io/badge/left-right-f39f37)
+[?](https://img.shields.io/badge/left-right-f39f37)
 
 </div>
 
