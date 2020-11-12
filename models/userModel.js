@@ -53,11 +53,6 @@ const userSchema = mongoose.Schema({
                 type: String,
                 default: '',
             },
-            github: {
-                type: String,
-                default: '',
-                unique: true,
-            },
             email: {
                 type: String,
                 default: '',
