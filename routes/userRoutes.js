@@ -31,6 +31,8 @@ router.post('/login', async (req, res) => {
         const userProfile = await User.findById(user.id).select('-password');
         console.log(userProfile);
         res.json(userProfile);
+    } else {
+        res.json({ msg: 'Username or Password is incorrect' });
     }
 });
 
