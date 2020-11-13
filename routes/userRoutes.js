@@ -5,20 +5,20 @@ const User = require('../models/userModel');
 
 // Get All Users
 router.get('/', async (req, res) => {
-    console.log('test');
-    const users = await User.find({});
+    const users = await User.find({}).select('-password');
     res.json(users);
 });
 
 // Get User by ID
 router.get('/:id', async (req, res) => {
-    const user = await User.findById(req.params.id);
+    const user = await User.findById(req.params.id).select('-password');
     res.json(user);
 });
 
 // Create User
 router.post('/', async (req, res) => {
-    const user = await User.create(req.body);
+    const createdUser = await User.create(req.body);
+    const user = await User.findById(createdUser._id).select('-password');
     res.json(user);
 });
 
@@ -29,8 +29,9 @@ router.post('/login', async (req, res) => {
     console.log(email);
     if (user && (await user.comparePassword(password))) {
         const userProfile = await User.findById(user.id).select('-password');
-        console.log(userProfile);
         res.json(userProfile);
+    } else {
+        res.json({ msg: 'Username or Password is incorrect' });
     }
 });
 
@@ -40,13 +41,13 @@ router.put('/update/:id', async (req, res) => {
     const user = await User.findOneAndUpdate({ _id: req.params.id }, req.body, {
         new: true,
         runValidators: true,
-    });
+    }).select('-password');
     res.json(user);
 });
 
 // Delete User by ID
 router.delete(':/id', async (req, res) => {
-    const user = await User.findById(req.params.id);
+    const user = await User.findById(req.params.id).select('-password');
     user.remove();
     res.json(user);
 });
