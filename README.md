@@ -97,7 +97,7 @@ Sign-in and/or Sign-up. There is an admin and user option, each having their own
 
 ## Capstone Project Credits Go To The Following Builders
 Team Nemesis: 
-- [Brittani Erickson](https://github.com/brittani-ericksen) Front-End, LOGO-Design and WireFrame Layout and Full Web Site Coloring.
+- [Brittani Ericksen](https://github.com/brittani-ericksen) Front-End, LOGO-Design and WireFrame Layout and Full Web Site Coloring.
 - [Justin Gardner](https://github.com/JustinSGardner) Full-Stack, Design-Styles and Design-Ideas.
 - [Chris Owens](https://github.com/chrisowensdev) Full-Stack and Design-Implementations.
 - [Ryan Schniederjan](https://github.com/rynoschni) Project Manager/Scrum Master, Full-Stack Developer and WireFrame-Layout.
