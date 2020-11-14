@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="" rel="" target="_blank"><img width="150" src="/squadmatelogo.png" alt="SquadMate Logo"></a></p>
+  <a href="" rel="" target="_blank"><img width="150" src="https://github.com/brittani-ericksen/SquadMate-Frontend/blob/main/public/squadmatelogo.png" alt="SquadMate Logo"></a></p>
 </p>
 
 <h1 align="center">SquadMate</h1>
