@@ -1,37 +1,40 @@
 <p align="center">
-  <a href="" rel="" target="_blank"><img width="150" src="/squadmatelogo.png" alt="SquadMate Logo"></a></p>
+  <a href="" rel="" target="_blank"><img width="150" src="public/iconimages/squadmatelogo.png" alt="SquadMate Logo"></a></p>
 </p>
 
 <h1 align="center">SquadMate</h1>
 </div>
 
  ## 
- SquadMate was built to address the challenges a team manager faces regarding communication between themselves and the parents/guardians of the team of students they lead.The application stores data on member registration, medical information and any important documents needed to be prepared for upcoming events.
+ SquadMate was built to address the challenges a team manager faces regarding communication between themselves and the teams they lead.The application stores data on member registration, medical information and any important documents needed to be prepared for upcoming events. This application can be used by a variety of people class groups for different events.
 
 
 <p align="center">
 
-![intro_screen]()
+![intro_screenshot]()
 
-![presentation_snippet]()
+![presentation_gifhy]()
 
-![Alt Text](url)
+![deployment_link](url)
 
 </p>
 
 ## Features
 - Carousel
 - Konami Code
+- Bcrypt Encoding
 - Document Upload 
 - File-system Routing
 - User Profile Picture
 - Breadcrumb Navigation
+- Built-in CSS Support
 - Built-in Markdown Page
-- Built-in CSS(Less) Support
 - User Log-in, Sign-up and Log-out
 - Custom Designed and uploaded Logo
 - Print Function and icon for Emergency Cards, including a QRCode
 - Made use of a Master Component Layout with Integrated Components file system
+- The ability to move past completing critical information fields pauses the moving forward process until completed. 
+- Acknowledgment of 18 years or older in the selection box provided at sign-up has to be selected in order to proceed.
 
 ## Installation
 To install SquadMate use the package-management system:
@@ -43,7 +46,6 @@ Back-End:
 **[npm install](https://dev.to/lukeocodes/enny-stack-the-express-ngrok-and-nodemon-stack-23j)**
 
 ## Technical Framework Usage: MERN Stack
-
 - MongoDB
 - Express
 - React
@@ -92,16 +94,16 @@ Sign-in and/or Sign-up. There is an admin and user option, each having their own
 
 ## Triumphs
 - The ability to update a Profile Photo.
-- Communication between team when pushing up code from a branch without merge conflicts was incredibly efficient.
-- Applied the knowledge form the sixteen(16)-week coarse at DigitalCrafts Bootcamp to incorporated that knowledge into using MangoDB Database we did not cover during class.
+- Communication between team when pushing up code from a branch without merge conflicts.
+- Applied the knowledge form the sixteen(16)-week coarse at DigitalCrafts Bootcamp to incorporate that knowledge into using MangoDB Database that was not cover during class period.
 
 ## Capstone Project Credits Go To The Following Builders
 Team Nemesis: 
-- [Brittani Erickson](https://github.com/brittani-ericksen) Front-End, LOGO-Design and WireFrame Layout and Full Web Site Coloring.
-- [Justin Gardner](https://github.com/JustinSGardner) Full-Stack, Design-Styles and Design-Ideas.
-- [Chris Owens](https://github.com/chrisowensdev) Full-Stack and Design-Implementations.
-- [Ryan Schniederjan](https://github.com/rynoschni) Project Manager/Scrum Master, Full-Stack Developer and WireFrame-Layout.
-- [Annemarie Thomas](https://github.com/Athomas9sa) Master Layout Components, WireFrame-Layout and ReadMe-File.
+- Full-Stack Developer:[Brittani Erickson](https://github.com/brittani-ericksen) Front-End, LOGO-Design and WireFrame Layout.
+- Full-Stack Developer:[Justin Gardner](https://github.com/JustinSGardner) Back-End, Design-Styles and Design-Ideas.
+- Full-Stack Developer:[Chris Owens](https://github.com/chrisowensdev) Back-End, Design-Implementations and Deployment.
+- Full-Stack Developer:[Ryan Schniederjan](https://github.com/rynoschni) PM/Scrum Master and LayoutWireFrames.
+- Full-Stack Developer:[Annemarie Thomas](https://github.com/Athomas9sa) Front-End, Master Layout Components and ReadMe-Files.
 
 ## GitHub Project Links:
 
@@ -116,68 +118,67 @@ Team Nemesis:
 - Trello provided the ability to have up to date communications on our project for all group members.
 - Made use of collaborating on LiveShare VSCode when code-along was necessary for portions of the project.
 
-## Code Example Extraction
-Admin Component:
+## Back-End Code Example Extraction
+HTTP/Server/Port:
 ```
-function EmergencyCard(props) {
-    const { user } = props;
-    const [teamMembers, setTeamMembers] = useState([]);
-
-    useEffect(() => {
-        (async function(){
-            const response = await fetch(`process.env.REACT_APP_SERVER_API/team/${user.team}/users`);
-            const data = await response.json();
-            setTeamMembers(data);
-            console.log(data);
-        })();
-    }, [setTeamMembers, user]);
-
-    let team = teamMembers.filter(member => member._id !== user._id);
-
-    return (
-        <>
-        <RemovePrint className=".removePrint">
-        <Button onClick={window.print}><PrintIcon /></Button>
-        </RemovePrint>
-        <Container className="printCard">
-        {team.map((member) => (            
-            <GetCardInfo id={member._id}/>
-        ))}
-        </Container>
-        </>
-    );
-}
-export default EmergencyCard;
+const http = require('http');
+const app = express();
+const server = http.createServer(app);
+server.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
 ```
-Style CSS SigninPage Component:
+Cors (require, usage, passing):
 ```
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
+const cors = require('cors');
+app.use(cors(corsOptions));
+const corsOptions = {
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers':
+        'Origin, X-Requested-With, Content-Type, Accept',
+};
+```
+Database (require, usage, promise):
+```
+const mongoose = require('mongoose');
+const connectDB = require('./config/db.js');
+connectDB();
+const connectDB = async () => {
+    try {
+        const conn = await mongoose.connect(process.env.MONGO_URI, {
+            useUnifiedTopology: true,
+            useNewUrlParser: true,
+            useCreateIndex: true,
+            useFindAndModify: false,
+        });
+        console.log(`MongoDB Connected: ${conn.connection.host}`);
+    } catch (error) {
+        console.error(error);
+    }
+};
+module.exports = connectDB;
+```
+Routes (require, usage, component):
+```
+const teamController = require('./routes/teamRoutes.js');
+app.use('/team', teamController);
+const Team = require('../models/teamModel');
+// Get All Teams
+router.get('/', async (req, res) => {
+    const team = await Team.find({});
+    res.json(team);
+});
 ```
 
 ## Support Services
 These great services support SquadMate's core infrastructure:
-[<img loading="lazy" alt="GitHub" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png" height="15">](https://github.com/):octocat:
+[<img loading="lazy" alt="GitHub" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png" height="15">](https://github.com/)
 [<img loading="lazy" alt="Material-UI logo" alt="Material-UI logo" src="https://material-ui.com/static/logo.svg" width="30">](https://www.npmjs.com/package/@material-ui/core)
+[<img loading="lazy" alt="MongoDB" src="https://webassets.mongodb.com/_com_assets/cms/MongoDB_Logo_FullColorBlack_RGB-4td3yuxzjs.png" height="20">](https://www.mongodb.com/)
 
-## Questions
-## Documentation
 ## The End.
-:sparkles: :rocket: :metal: 
+
