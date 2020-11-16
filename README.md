@@ -97,11 +97,11 @@ Sign-in and/or Sign-up. There is an admin and user option, each having their own
 
 ## Capstone Project Credits Go To The Following Builders
  
-- [Brittani Ericksen](https://github.com/brittani-ericksen) Front-End, LOGO-Design and WireFrame Layout and Full Web Site Coloring.
-- [Justin Gardner](https://github.com/JustinSGardner) Full-Stack, Design-Styles and Design-Ideas.
-- [Chris Owens](https://github.com/chrisowensdev) Full-Stack and Design-Implementations.
-- [Ryan Schniederjan](https://github.com/rynoschni) Project Manager/Scrum Master, Full-Stack Developer and WireFrame-Layout.
-- [Annemarie Thomas](https://github.com/Athomas9sa) Master Layout Components, WireFrame-Layout and ReadMe-File.
+- Full-Stack Developer:[Brittani Ericksen](https://github.com/brittani-ericksen) Front-End, LOGO-Design and WireFrame Layout.
+- Full-Stack Developer:[Justin Gardner](https://github.com/JustinSGardner) Back-End, Design-Styles and Design-Ideas.
+- Full-Stack Developer:[Chris Owens](https://github.com/chrisowensdev) Back-End, Design-Implementations and Deployment.
+- Full-Stack Developer:[Ryan Schniederjan](https://github.com/rynoschni) PM/Scrum Master and LayoutWireFrames.
+- Full-Stack Developer:[Annemarie Thomas](https://github.com/Athomas9sa) Front-End, Master Layout Components and ReadMe-Files.
 
 ## GitHub Project Links:
 
