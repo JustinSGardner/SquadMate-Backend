@@ -54,7 +54,7 @@ Back-End:
 Custom Secured Data usage.
 
 ## Build Status
-Deployed.**[SquadMate](https://www.squadmate.app/)**
+Deployed@**[SquadMate](https://www.squadmate.app/)**
 
 ## Usage
 Sign-in and/or Sign-up. There is an admin and user option, each having their own documentation privileges to navigate to with buttons. Administration will have ability to upload documents and print team emergency cards. User will have ability to update emergency card information and complete forms needed by admin.
