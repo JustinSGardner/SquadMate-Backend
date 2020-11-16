@@ -77,12 +77,12 @@ Sign-in and/or Sign-up. There is an admin and user option, each having their own
         PermissionsComponent    |                  |
 
 ## Stretch Goals
-- [ ] AuthO
-- [ ] Calendar.
-- [ ] Team Chatroom.
+- [ ] Team Chatrooms.
+- [ ] Calendar integrations.
 - [ ] Coach and Manager Notification Board.
 - [ ] Turn the Custom Application into more widely used app.
 - [ ] Random Picture Display of the Events, Teams or Individual players.
+- [ ] AuthO is a third(3'd) party HIPPA approved and compliant identity management system.
 - [ ] Ability to give message alerts to parents if a telephone number or signed off form is incomplete.
 
 ## Challenges
@@ -96,7 +96,7 @@ Sign-in and/or Sign-up. There is an admin and user option, each having their own
 - Applied the knowledge form the sixteen(16)-week coarse at DigitalCrafts Bootcamp to incorporated that knowledge into using MangoDB Database we did not cover during class.
 
 ## Capstone Project Credits Go To The Following Builders
-Team Nemesis: 
+ 
 - [Brittani Ericksen](https://github.com/brittani-ericksen) Front-End, LOGO-Design and WireFrame Layout and Full Web Site Coloring.
 - [Justin Gardner](https://github.com/JustinSGardner) Full-Stack, Design-Styles and Design-Ideas.
 - [Chris Owens](https://github.com/chrisowensdev) Full-Stack and Design-Implementations.
@@ -117,67 +117,80 @@ Team Nemesis:
 - Made use of collaborating on LiveShare VSCode when code-along was necessary for portions of the project.
 
 ## Code Example Extraction
-Admin Component:
+Data Base:
 ```
-function EmergencyCard(props) {
-    const { user } = props;
-    const [teamMembers, setTeamMembers] = useState([]);
+const connectDB = require('./config/db.js');
+connectDB();
 
-    useEffect(() => {
-        (async function(){
-            const response = await fetch(`process.env.REACT_APP_SERVER_API/team/${user.team}/users`);
-            const data = await response.json();
-            setTeamMembers(data);
-            console.log(data);
-        })();
-    }, [setTeamMembers, user]);
+const mongoose = require('mongoose');
 
-    let team = teamMembers.filter(member => member._id !== user._id);
+const connectDB = async () => {
+    try {
+        const conn = await mongoose.connect(process.env.MONGO_URI, {
+            useUnifiedTopology: true,
+            useNewUrlParser: true,
+            useCreateIndex: true,
+            useFindAndModify: false,
+        });
+        console.log(`MongoDB Connected: ${conn.connection.host}`);
+    } catch (error) {
+        console.error(error);
+    }
+};
 
-    return (
-        <>
-        <RemovePrint className=".removePrint">
-        <Button onClick={window.print}><PrintIcon /></Button>
-        </RemovePrint>
-        <Container className="printCard">
-        {team.map((member) => (            
-            <GetCardInfo id={member._id}/>
-        ))}
-        </Container>
-        </>
-    );
-}
-export default EmergencyCard;
+module.exports = connectDB;
 ```
-Style CSS SigninPage Component:
+Team Model:
 ```
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
+const teamController = require('./routes/teamRoutes.js');
+
+app.use('/team', teamController);
+
+const Team = require('../models/teamModel');
+
+// Get All Teams
+router.get('/', async (req, res) => {
+    const team = await Team.find({});
+    res.json(team);
+});
+
+const mongoose = require('mongoose');
+
+const teamSchema = mongoose.Schema(
+    {
+        teamName: {
+            type: String,
+            required: true
+        },
+    }
+);
+
+const Team = mongoose.model('Team', teamSchema);
+
+module.exports = Team;
+```
+Cors:
+```
+const cors = require('cors');
+
+const corsOptions = {
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers':
+        'Origin, X-Requested-With, Content-Type, Accept',
+};
+
+app.use(cors(corsOptions));
 ```
 
 ## Support Services
 These great services support SquadMate's core infrastructure:
 [<img loading="lazy" alt="GitHub" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png" height="15">](https://github.com/):octocat:
 [<img loading="lazy" alt="Material-UI logo" alt="Material-UI logo" src="https://material-ui.com/static/logo.svg" width="30">](https://www.npmjs.com/package/@material-ui/core)
+[<img loading="lazy" alt="MongoDB" src="https://webassets.mongodb.com/_com_assets/cms/MongoDB_Logo_FullColorBlack_RGB-4td3yuxzjs.png" height="20">](https://www.mongodb.com/)
 
-## Questions
-## Documentation
 ## The End.
-:sparkles: :rocket: :metal: 
+ 
