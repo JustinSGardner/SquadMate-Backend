@@ -11,7 +11,7 @@
 
 <p align="center">
 
-![intro_screen]()
+![intro_screen](https://firebasestorage.googleapis.com/v0/b/capstoneupload.appspot.com/o/intro-screen.png?alt=media&token=e98fc3f7-fe3e-4a02-a7d1-e1ffab768a2b)
 
 ![presentation_snippet]()
 
