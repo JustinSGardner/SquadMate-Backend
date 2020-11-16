@@ -1,0 +1,15 @@
+<div class="card">
+    <div class="card-info">
+        <p>Rider Name: ${user.parentForm.rider.firstName} ${user.parentForm.rider.lastName}</p>
+        <p>Emergency Contact Name: ${user.parentForm.emergencyContactOne.firstName} ${user.parentForm.emergencyContactOne.lastName}</p>
+        <p>Emergency Contact Number: ${user.parentForm.emergencyContactOne.phone.cell}</p>
+        <p>Medications and History: ${user.allergies}</p>
+        <p>Ibuprofen Release: ${user.ibuprofenRelease ? 'Yes' : 'No' }</p>
+        <p>Insurance Company Name: ${user.insurance.provider}</p>
+        <p>Policy Number: ${user.insurance.number}</p>
+        <p>Group Name: ${user.insurance.group}</p>
+        
+
+    </div>
+    <div class="qrcode"><img src="https://api.qrserver.com/v1/create-qr-code/?data=https://https://squadmateco.herokuapp.com/getCardInfo/${user._id}"></div>
+</div>

@@ -10,6 +10,8 @@ dotenv.config();
 const connectDB = require('./config/db.js');
 connectDB();
 
+const es6Renderer = require('express-es6-template-engine');
+
 const cors = require('cors');
 const corsOptions = {
     origin: '*',
@@ -23,6 +25,12 @@ const corsOptions = {
 
 const app = express();
 const server = http.createServer(app);
+
+app.engine('html', es6Renderer);
+app.set('views', './views');
+app.set('view engine', 'html');
+
+app.use(express.static('public'));
 
 app.use(bodyParser.json());
 app.use(
@@ -43,7 +51,9 @@ app.get('/', (req, res) => {
 const userController = require('./routes/userRoutes.js');
 const teamController = require('./routes/teamRoutes.js');
 const documentController = require('./routes/documentRoutes.js');
+const getCardInfoController = require('./routes/getCardInfoRoutes.js');
 
 app.use('/user', userController);
 app.use('/team', teamController);
 app.use('/document', documentController);
+app.use('/getCardInfo', getCardInfoController);
